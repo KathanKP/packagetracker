@@ -1,10 +1,7 @@
 """
-This is the class which denotes a package and has all details about it
+This is the parent class which denotes a basic package and has some details about it
 """
-
-
-class Package:
-
+class BasePackage:
     """
     Parameters:
         tracking_number: tracking number for this package (String)
