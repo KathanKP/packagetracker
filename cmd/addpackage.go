@@ -6,7 +6,11 @@ package cmd
 
 import (
 	"fmt"
+	"log"
+	"time"
 
+	"github.com/KathanKP/packagetracker/internal/domain"
+	"github.com/KathanKP/packagetracker/internal/utilities"
 	"github.com/spf13/cobra"
 )
 
@@ -23,7 +27,12 @@ to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("addpackage called")
 		// Take as input package details
-		// This calls the server API func to add package based on the the delivery service
+		newPackage := domain.Package{"FEDEX", "600117021790", "NEW", time.Now()}
+		// Call function that adds package to the database table
+		err := utilities.AddPackageToDB(newPackage)
+		if err != nil {
+			log.Fatalln(err)
+		}
 		// Prints any err, success message
 	},
 }
